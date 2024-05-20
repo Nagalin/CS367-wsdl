@@ -68,9 +68,8 @@
     <service name="OrderManagementService">
         <document>My first service</document>
         <port name="OrderManagementPort" binding="tns:OrderManagementSoapBinding">
-            <soap:address location="http://delivery:8080/OrderManagementService" />
-
-        </port>
+            <soap:address location="http://delivery.com/OrderManagementService" />
+        </port> 
 
     </service>
 
