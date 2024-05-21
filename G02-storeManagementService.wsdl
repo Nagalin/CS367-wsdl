@@ -32,11 +32,11 @@
     </message>
 
     <message name="GetItemInfoInput">
-        <part name="body" element="xsdl:GetItemInfoGetItemInfoRequest" />
+        <part name="body" element="xsdl:GetItemInfoRequest" />
     </message>
 
     <message name="GetItemInfoOutput">
-        <part name="body" element="xsdl:GetItemInfoRequest" />
+        <part name="body" element="xsdl:GetItemInfoRespond" />
     </message>
 
     <portType name="StoreManagementPortType">
@@ -69,25 +69,25 @@
         />
 
         <operation name="getItemStatus">
-            <soap:opration soapAction="http://delivery.com/getItemStatus" />
+            <soap:operation soapAction="http://delivery.com/getItemStatus" />
             <input> <soap:body use="literal" /> </input>
             <output> <soap:body use="literal" /> </output>
         </operation>
 
         <operation name="confirmOrder">
-            <soap:opration soapAction="http://delivery.com/confirmOrder" />
+            <soap:operation soapAction="http://delivery.com/confirmOrder" />
             <input> <soap:body use="literal" /> </input>
             <output> <soap:body use="literal" /> </output>
         </operation>
 
         <operation name="updateItemStatus">
-            <soap:opration soapAction="http://delivery.com/updateItemStatus" />
+            <soap:operation soapAction="http://delivery.com/updateItemStatus" />
             <input> <soap:body use="literal" /> </input>
             <output> <soap:body use="literal" /> </output>
         </operation>
 
         <operation name="getItemInfo">
-            <soap:opration soapAction="http://delivery.com/getItemInfo" />
+            <soap:operation soapAction="http://delivery.com/getItemInfo" />
             <input> <soap:body use="literal" /> </input>
             <output> <soap:body use="literal" /> </output>
         </operation>
