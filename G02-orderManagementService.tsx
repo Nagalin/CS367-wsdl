@@ -1,4 +1,4 @@
-
+//@ts-nocheck
 <schema xmlns="http://www.w3.org/2000/10/XMLSchema">
 
     <simpleType name="OrderStatusType">
@@ -76,7 +76,22 @@
                 <element name="driverVehicle" type="string" />
                 <element name="rating" type="float" />
                 <element name="driverLocation" type="string" />
-                <element name="driverBankAccoun" type="string" />
+                <element name="driverBankAccount">
+                    <complexType>
+                    <element name="accountNo">
+                        <simpleType>
+                            <restriction base="integer">
+                                <pattern value="\d{10}" />
+                            </restriction>
+                        </simpleType>
+                    
+                    </element>
+
+                    <element name="bankName" type="string"/>
+
+                    </complexType>
+
+                </element>
             </complexType>
         </element>
 
@@ -190,4 +205,4 @@
         </complexType>
     </element>
 
-</schema > 
+</schema> 
