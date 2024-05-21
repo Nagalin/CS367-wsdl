@@ -1,0 +1,91 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="ItemStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Available"/>
+            <xs:enumeration value="Unavailable"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ConfirmStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Confirmed"/>
+            <xs:enumeration value="Not Confirmed"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ItemInfoType">
+        <xs:sequence>
+            <xs:element name="itemId" type="xs:string" />
+            <xs:element name="itemName" type="xs:string" />
+            <xs:element name="itemPic" type="xs:string" />
+            <xs:element name="itemPrice" type="xs:float" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="GetItemStatusRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="itemId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetItemStatusRespond">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ItemStatus" type="ItemStatusType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="ConfirmOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cartId" type="xs:string"/>
+                <xs:element name="itemId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ConfirmOrderRespond">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ItemStatus" type="ItemStatusType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateItemStatusRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="itemId" type="xs:string" />
+                <xs:element name="itemStatus" type="ItemStatusType" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateItemStatusRespond">
+        <xs:complexType>
+            <xs:element name="newItemStatus" type="ItemStatusType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetItemInfoRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="itemId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetItemInfoRespond">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="itemInfo" type="ItemInfoType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
