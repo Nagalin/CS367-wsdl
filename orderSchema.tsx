@@ -36,6 +36,9 @@
             </sequence>
         </complexType>
 
+    
+
+        {deliveryManagementDependencies }
         <complexType name="driverInfo" minOccurs="0" nillable="true" >
             <element name="driverId" type="string" />
             <element name="driverName" type="string" />
@@ -54,4 +57,89 @@
 
 
     </complexType>
+
+    <complexType name="updateOrderRequest">
+        <element name="orderId" type="string" />
+        <element name="userId" type="string" />
+        <element name="driverId" type="string" />
+    </complexType>
+
+    <simpleType name="updateOrderRespond" type="string">
+        <restriction base="string">
+            <enumeration value="success" />
+            <enumeration value="fail" />
+        </restriction>
+    </simpleType>
+
+    <complexType name="updateOrderStatusRequest">
+        <element name="orderId" type="string" />
+        <element name="userId" type="string" />
+        <element name="newOrderStatus" type="string" />
+
+    </complexType>
+
+    <complexType name="updateOrderStatusRespond">
+        <element name="orderStatus" type="string" />
+    </complexType>
+
+    <complexType name="cancelOrderRequest">
+        <element name="orderId" type="string" />
+        <element name="reasons" type="string" />
+
+    </complexType>
+
+    <complexType name="cancelOrderRespond">
+        <element name="orderStatus" type="string" />
+        <element name="orderId" type="string" />
+
+    </complexType>
+
+    <complexType name="getOrderInfoRequest">
+        <element name="userId" />
+
+    </complexType>
+
+    <complexType name="getOrderInfoRespond">
+        <complexType name="ordersInfo" type="string" >
+            <sequence>
+                <complexType name="orderInfo">
+                    <element name="orderId" type="string" />
+                    <element name="orderStatus" type="string" />
+                    <element name="userId" type="string" />
+                    <element name="userAddress" type="string" />
+                    <element name="createdAt" type="string" />
+                    <element name="updatedAt" type="string" />
+
+                </complexType>
+            </sequence>
+        </complexType>
+
+    </complexType>
+
+    <complexType name="getOrderInfoWithIdRequest">
+        <element name="userId" />
+        <element name="orderId" />
+    </complexType>
+
+    <complexType name="getOrderInfoWithIdRespond">
+        <element name="userId" />
+        <element name="orderId" />
+
+        <complexType name="ordersInfo">
+        <complexType name="orderInfo" type="string" >
+            <sequence>
+               
+                <element name="orderId" type="string" />
+                <element name="orderStatus" type="string" />
+                <element name="userId" type="string" />
+                <element name="userAddress" type="string" />
+                <element name="createdAt" type="date" />
+                <element name="updatedAt" type="date" />
+            </sequence>
+            </complexType>
+        </complexType>
+
+    </complexType>
+
+
 </schema> 
