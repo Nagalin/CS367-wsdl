@@ -31,36 +31,20 @@
         <element name="totalPrice" type="float" />
     </complexType>
 
-    <element name="CreateOrderRequest">
-        <complextType>
-            <element name="cartId" type="string" />
-            <element name="userId" type="string" />
+    <complexType name="UserAddressType">
+        <sequence>
+            <element name="houseNo" type="string" />
+            <element name="Street" type="string" />
+            <element name="subDistrict" type="string" />
+            <element name="district" type="string" />
+            <element name="province" type="string" />
+            <element name="postalCode" type="postalCodeType" />
+        </sequence>
+    </complexType>
 
-            <simpleType name="confirmStatus">
-                <restriction base="string">
-                    <enumeration value="confirm" />
-                    <enumeration value="notConfirm" />
-                </restriction>
-            </simpleType>
-        </complextType>
-    </element>
-
-    <element name="CreateOrderRespond">
-        <element name="orderInfo" type="OrderInfoType" />
-
-        <complexType name="itemsInfo" minOccurs="1" >
-            <sequence>
-                <element
-                    name="itemInfo"
-                    type="ItemInfoType"
-                    minOccurs="1"
-                    maxOccurs="unbounded"
-                />
-            </sequence>
-        </complexType>
-
-        <element minOccurs="0" nillable="true" >
-            <complexType name="driverInfo">
+    <complexType name="DriverInfoType">
+        <element name="driverInfo" minOccurs="0" nillable="true" >
+            <complexType >
                 <element name="driverId" type="string" />
                 <complexType name="driverName">
                     <element name="fname" type="string" />
@@ -75,26 +59,56 @@
 
                 <element name="driverVehicle" type="string" />
                 <element name="rating" type="float" />
-                <element name="driverLocation" type="string" />
-                <element name="driverBankAccount">
+                <element name="driverLocation" >
                     <complexType>
-                    <element name="accountNo">
-                        <simpleType>
-                            <restriction base="integer">
-                                <pattern value="\d{10}" />
-                            </restriction>
-                        </simpleType>
-                    
-                    </element>
-
-                    <element name="bankName" type="string"/>
-
+                        <element name="latitude" type="decimal" />
+                        <element name="longitude" type="decimal" />
+                        <element name="timestamp" type="dateTime" />
+                        <element name="address" type="UserAddressType" minOccurs="0" />
                     </complexType>
-
+                </element>
+                <element name="driverBankName" type="string" />
+                <element name="driverAccountNo">
+                    <restriction base="integer">
+                        <pattern value="\d{10}" />
+                    </restriction>
                 </element>
             </complexType>
         </element>
+    </complexType>
 
+    <element name="CreateOrderRequest">
+        <complexType>
+            <element name="cartId" type="string" />
+            <element name="userId" type="string" />
+
+            <element name="confirmStatus">
+                <simpleType >
+                    <restriction base="string">
+                        <enumeration value="confirm" />
+                        <enumeration value="notConfirm" />
+                    </restriction>
+                </simpleType>
+            </element>
+        </complexType>
+    </element>
+
+    <element name="CreateOrderRespond">
+        <element name="orderInfo" type="OrderInfoType" />
+
+        <element name="itemsInfo" minOccurs="1" >
+            <complexType>
+                <sequence>
+                    <element
+                        name="itemInfo"
+                        type="ItemInfoType"
+                        minOccurs="1"
+                        maxOccurs="unbounded"
+                    />
+                </sequence>
+            </complexType>
+        </element>
+        <element name="driverInfo" type="DriverInfoType" />
     </element>
 
     <element name="UpdateOrderRequest">
@@ -167,6 +181,8 @@
                     </sequence>
                 </complexType>
             </element>
+            
+            <element name="driverInfo" type="DriverInfoType" />
         </complexType>
     </element>
 
@@ -179,29 +195,30 @@
 
     <element name="GetOrderInfoWithIdRespond">
         <complexType>
-            <complexType>
-                <element name="ordersInfo">
+            <element name="ordersInfo">
+                <complexType>
                     <sequence>
                         <element
                             name="orderInfo"
                             type="OrderInfoType"
-                            minOccurs="0"
+                        />
+                    </sequence>
+                </complexType>
+            </element>
+
+            <element name="itemsInfo" >
+                <complexType minOccurs="1" >
+                    <sequence >
+                        <element
+                            name="itemInfo"
+                            type="ItemInfoType"
+                            minOccurs="1"
                             maxOccurs="unbounded"
                         />
                     </sequence>
-                </element>
-            </complexType>
-
-            <complexType name="itemsInfo" minOccurs="1" >
-                <sequence >
-                    <element
-                        name="itemInfo"
-                        type="ItemInfoType"
-                        minOccurs="1"
-                        maxOccurs="unbounded"
-                    />
-                </sequence>
-            </complexType>
+                </complexType>
+            </element>
+            <element name="driverInfo" type="DriverInfoType" />
         </complexType>
     </element>
 
