@@ -1,0 +1,176 @@
+<schema xmlns="http://www.w3.org/2000/10/XMLSchema">
+
+<simpleType name="storeIdType">
+    <restriction base="string">
+        <pattern value="[S][A-Z]{2}\d{7}"/>
+    </restriction>
+</simpleType>
+
+<simpleType name="userIdType">
+    <restriction base="string">
+        <pattern value="[U]{1}[A-Z]{2}\d{7}"/>
+    </restriction>
+</simpleType>
+
+<simpleType name="driverIdType">
+    <restriction base="string">
+        <pattern value="[R]{1}[A-Z]{2}\d{7}"/>
+    </restriction>
+</simpleType>
+
+<simpleType name="inputRatingType">
+    <restriction base="integer">
+        <enumeration value="1"/>
+        <enumeration value="2"/>
+        <enumeration value="3"/>
+        <enumeration value="4"/>
+        <enumeration value="5"/>
+    </restriction>
+</simpleType>
+
+<simpleType name="statusType">
+    <restriction base="string">
+        <enumeration value="success"/>
+        <enumeration value="fail"/>
+    </restriction>
+</simpleType>
+
+<simpleType name="ratingType">
+    <restriction base="float">
+      <minInclusive value="1.0"/>
+      <maxInclusive value="5.0"/>
+    </restriction>
+</simpleType>
+
+<element name="createReviewRequest">
+    <complexType>
+        <all>
+            <element name="storeId" type="storeIdType"/>
+            <element namr="userId" type="userIdType"/>
+            <element name="storeComment" type="string" maxLength="50"/>
+            <element name="storeRating" type="inputRatingType"/>
+        </all>
+    </complexType>
+</element>
+
+<element name="createReviewResponse">
+    <simpleType>
+        <element name="createStatus" type="statusType"/>
+    </simpleType>
+</element>
+
+<element name="updateReviewRequest">
+    <complexType>
+        <all>
+            <element name="reviewId" type="reviewIdType"/>
+            <element namr="userId" type="userIdType"/>
+            <element name="storeComment" type="string" maxLength="50"/>
+            <element name="storeRating" type="inputRatingType"/>
+        </all>
+    </complexType>
+</element>
+
+<element name="updateReviewResponse">
+    <simpleType>
+        <element name="updateStatus" type="statusType"/>
+    </simpleType>
+</element>
+
+<element name="deleteReviewRequest">
+    <complexType>
+        <all>
+            <element name="reviewId" type="reviewIdType"/>
+            <element name="userId" type="userIdType"/>
+        </all>
+    </complexType>
+</element>
+
+<element name="deleteReviewResponse">
+    <complexType>
+        <all>
+            <element name="reviewId" type="reviewIdType"/>
+            <element name="deleteState" type="statusType"/>
+        </all>
+    </complexType>
+</element>
+
+<element name="automaticReviewCheckingRequest">
+    <complexType>
+        <all>
+            <element name="storeId" type="storeIdType"/>
+            <element name="userId" type="userIdType"/>
+            <element name="storeComment" type="string" maxLength="50"/>
+            <element name="storeRating" type="inputRatingType"/>
+        </all>
+    </complexType>
+</element>
+
+<element name="automaticReviewCheckingResponse">
+    <complexType>
+        <all>
+            <element name="storeId" type="storeIdType"/>
+            <element name="userId" type="userIdType"/>
+            <element name="storeComment" type="string" maxLength="50"/>
+            <element name="storeRating" type="inputRatingType"/>
+        </all>
+    </complexType>
+</element>
+
+<element name="createDriverReviewRequest">
+    <complexType>
+        <all>
+            <element name="driverRating" type="inputRatingType"/>
+            <element name="driverId" type="driverIdType"/>
+        </all>
+    </complexType>
+</element>
+
+<element name="createDriverReviewResponse">
+    <simpleType>
+        <element name="createStatus" type="statusType"/>
+    </simpleType>
+</element>
+
+<element name="getStoreReviewRequest">
+    <simpleType>
+        <element name="storeId" type="storeIdType"/>
+    </simpleType>
+</element>
+
+<element name="getStoreReviewResponse">
+    <complexType>
+        <all>
+            <element name="storeId" type="storeIdType"/>
+            <element name="totalRating" type="ratingType"/>
+            <element name="reviewStore">
+                <complexType>
+                    <sequence>
+                        <element name="userId" type="userIdType"/>
+                        <element name="storeId" type="storeIdType"/>
+                        <element name="reviewId" type="reviewIdType"/>
+                        <element name="storeComment" type="string" maxLength="50"/>
+                        <element name="storeRating" type="inputRatingType"/>
+                        <element name="createdAt" type="dateTime"/>
+                        <element name="updatedAt" type="dateTime"/> 
+                        {/* dateTime is a built-in data type */}
+                    </sequence>
+                </complexType>
+            </element>
+        </all>
+    </complexType>
+</element>
+
+<element name="getDriverReviewRequest">
+    <simpleType>
+        <element name="driverId" type="driverIdType"/>
+    </simpleType>
+</element>
+
+<element name="getDriverReviewResponse">
+    <complexType>
+        <element name="driverId" type="driverIdType"/>
+        <element name="driverRating" type="ratingType"/>
+    </complexType>
+</element>
+
+</schema> 
