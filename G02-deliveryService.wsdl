@@ -1,0 +1,115 @@
+<definitions name = "DeliveryManagement"
+    targetNamespace = "http://example.com/deliverymanagement.wsdl"
+        xmlns:tns="http://example.com/deliverymanagement.wsdl"
+        xmlns:xsdl="http://example.com/deliverymanagement.xsd"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns="http://schemas.xmlsoap.org/wsdl/">
+    <types>
+        <schema targetNamespace="http://example.com/deliverymanagement.xsd"
+                xmlns="http://www.w3.org/2000/10/XMLSchema">
+            <element name="FindDriverRequest">
+            </element>
+            <element name="FindDriver">
+            </element>
+            <element name="GetDriverStatusRequest">
+            </element>
+            <element name="GetDriverStatus">
+            </element>
+            <element name="TipRequest">
+            </element>
+            <element name="Tip">
+            </element>
+            <element name="GetDriverInfoRequest">
+            </element>
+            <element name="GetDriverInfo">
+            </element>
+        </schema>
+    </types>
+
+    <message name="GetFindDriverInput">
+        <part name="body" element="xsdl:FindDriverRequest"/>
+    </message>
+    <message name="GetFindDriverOutput">
+        <part name="body" element="xsdl:FindDriver"/>
+    </message>
+    <message name="GetDriverStatusInput">
+        <part name="body" element="xsdl:GetDriverStatusRequest"/>
+    </message>
+    <message name="GetDriverStatusOutput">
+        <part name="body" element="xsdl:GetDriverStatus"/>
+    </message>
+    <message name="GetTipInput">
+        <part name="body" element="xsdl:TipsRequest"/>
+    </message>
+    <message name="GetTipOutput">
+        <part name="body" element="xsdl:Tip"/>
+    </message>
+    <message name="GetDriverInfoInput">
+        <part name="body" element="xsdl:GetDriverInfoRequest"/>
+    </message>
+    <message name="GetDriverInfoOutput">
+        <part name="body" element="xsdl:GetDriverInfo"/>
+    </message>
+
+    <portType name="DeliveryManagementPortType">
+        <operation name="GetFindDriver">
+            <input message="tns:GetFindDriverInput">
+            <output message="tns:GetFindDriverOutput">
+        </operation>
+        <operation name="GetDriverStatus">
+            <input message="tns:GetDriverStatusInput">
+            <output message="tns:GetDriverStatusOutput">
+        </operation>
+        <operation name="GetTip">
+            <input message="tns:GetTipInput">
+            <output message="tns:GetTipOutput">
+        </operation>
+        <operation name="GetDriverInfo">
+            <input message="tns:GetDriverInfoInput">
+            <output message="tns:GetDriverInfoOutput">
+        </operation>
+    </portType>
+
+    <binding name="DeliveryManagementSoapBinding" type="tns:DeliveryManagementPortType">
+        <soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="GetFindDriver">
+            <soap:operation
+                soapAction="http://example.com/GetFindDriver"/>
+                <input> <soap:body user="literal"/>
+                </input>
+                <output> <soap:body use="literal"/>
+                </output>
+        </operation>
+        <operation name="GetDriverStatus">
+            <soap:operation
+                soapAction="http://example.com/GetDriverStatus"/>
+                <input> <soap:body user="literal"/>
+                </input>
+                <output> <soap:body use="literal"/>
+                </output>
+        </operation>
+        <operation name="GetTip">
+            <soap:operation
+                soapAction="http://example.com/GetTip"/>
+                <input> <soap:body user="literal"/>
+                </input>
+                <output> <soap:body use="literal"/>
+                </output>
+        </operation>
+        <operation name="GetDriverInfo">
+            <soap:operation
+                soapAction="http://example.com/GetDriverInfo"/>
+                <input> <soap:body user="literal"/>
+                </input>
+                <output> <soap:body use="literal"/>
+                </output>
+        </operation>
+    </binding>
+
+    <service name="DeliveryManagement">
+        <documentation>My first service</document>
+        <port name="DeliveryManagementPort" binding="tns:DeliveryManagementSoapBinding">
+            <soap:address location="http://example.com/deliverymanagement"/>
+        </port>
+    </service>
