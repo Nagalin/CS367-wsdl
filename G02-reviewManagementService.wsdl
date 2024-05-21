@@ -104,6 +104,12 @@
             style="document"
             transport="http://schemas.xmlsoap.org/soap/http"
     />
+
+    <!-- 
+        Operation 1: createReview
+        ใช้ในการสร้างรีวิวของร้านอาหารขึ้นมาใหม่ โดยจะใช้ข้อมูล storeId, userId, storeComment และ storeRating
+        เพื่อสร้างรีวิวใหม่ ซึ่งจะได้ออกมาเป็น status ว่า success หรือ fail 
+    -->
     <operation name="createReview">
             <soap:opration soapAction="http://delivery.com/createReview" />
             <input> 
@@ -114,6 +120,12 @@
             </output>
     </operation>
 
+    <!-- 
+        Operation 2: updateReview
+        ใช้ในการใช้ในการแก้ไข (อัพเดท) รีวิวร้านอาหารที่เคยถูกเขียนไปแล้ว เช่น ต้องการแก้ไขรีวิวเนื่องจากสะกดผิดเยอะ
+        ซึ่งจะมี input เป็น reviewId, userId, storeRating, storeComment โดยจะมีการเช็คว่า userId เป็นเจ้าของ
+        reviewId นั้นจริงหรือไม่ เพื่อป้องกันความผิดพลาด และส่งผลลัพธ์ออกเป็น updateStatus
+    -->
     <operation name="updateReview">
             <soap:opration soapAction="http://delivery.com/updateReview" />
             <input> 
@@ -124,6 +136,11 @@
             </output>
     </operation>
 
+    <!-- 
+        Operation 3: deleteReview
+        ใช้ในการใช้ในการลบรีวิวร้านอาหารในระบบหากไม่ต้องการให้แสดงรีวิวนั้น ๆ แล้ว เช่น ลบรีวิวของร้านอาหาร เป็นต้น
+        โดยต้องใช้ reviewId และ userId เพื่อเช็คว่าเป็นบุคคุลเดียวกับที่เขียนรีวิวหรือไม่ก่อนลบ เพื่อป้องกันความผิดพลาดที่อาจเกิดขึ้น
+    -->
     <operation name="deleteReview">
             <soap:opration soapAction="http://delivery.com/deleteReview" />
             <input> 
@@ -134,6 +151,11 @@
             </output>
     </operation>
 
+    <!-- 
+        Operation 4: automaticReviewChecking
+        ใช้สำหรับตรวจสอบคอมเมนท์รีวิวว่ามีความหยาบคายเกินเหตุหรือไม่ เพื่อป้องกันมิให้เกิดการกลั่นแกล้งหรือดูถูกกันเกิดขึ้น
+        โดยหากตรวจสอบแล้วว่าผ่านจะได้ output เป็น pass หากไม่ผ่านจะได้เป็น needRevision
+    -->
     <operation name="automaticReviewChecking">
             <soap:opration soapAction="http://delivery.com/automaticReviewChecking" />
             <input> 
@@ -144,6 +166,11 @@
             </output>
     </operation>
 
+    <!-- 
+        Operation 5: createDriverReview
+        ใช้ในการเพิ่ม rating ของ driver ที่นำอาหารมาส่ง โดยจะสามารถเพิ่มได้เป็นคะแนน 1-5 เท่านั้น
+        ไม่สามารถเขียนคอมเมนท์ให้กับ driver ได้
+    -->
     <operation name="createDriverReview">
             <soap:opration soapAction="http://delivery.com/createDriverReview" />
             <input> 
@@ -154,6 +181,11 @@
             </output>
     </operation>
 
+    <!-- 
+        Operation 6: getStoreReview
+        มีการเรียกใช้ storeId เพื่อตรวจสอบความคิดเห็น และคะแนนของแต่ละร้านอาหาร โดยสามารถดูคะแนนรวม
+        และรายละเอียดของรีวิวได้ ไม่ว่าจะเป็นคะแนนและคอมเมนท์ที่แต่ละ user ให้ หรือ timestamp ของรีวิวนั้น ๆ 
+    -->
     <operation name="getStoreReview">
             <soap:opration soapAction="http://delivery.com/getStoreReview" />
             <input> 
@@ -164,6 +196,10 @@
             </output>
     </operation>
 
+    <!-- 
+        Operation 7: getDriverReview
+        ใช้ driverId เพื่อตรวจสอบข้อมูล rating ของคนขับตาม driverId เป็นคะแนนเฉลี่ยที่ได้ทั้งหมด
+    -->
     <operation name="getDriverReview">
             <soap:opration soapAction="http://delivery.com/getDriverReview" />
             <input> 

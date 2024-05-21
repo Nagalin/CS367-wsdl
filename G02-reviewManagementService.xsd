@@ -35,6 +35,13 @@
     </restriction>
 </simpleType>
 
+<simpleType name="reviewStatus">
+    <restriction base="string">
+        <enumeration value="pass"/>
+        <enumeration value="needRevision"/>
+    </restriction>
+</simpleType>
+
 <simpleType name="ratingType">
     <restriction base="float">
       <minInclusive value="1.0"/>
@@ -106,14 +113,11 @@
 </element>
 
 <element name="automaticReviewCheckingResponse">
-    <complexType>
+    <simpleType>
         <all>
-            <element name="storeId" type="storeIdType"/>
-            <element name="userId" type="userIdType"/>
-            <element name="storeComment" type="string" maxLength="50"/>
-            <element name="storeRating" type="inputRatingType"/>
+            <element name="checkStatus" type="reviewStatus"/>
         </all>
-    </complexType>
+    </simpleType>
 </element>
 
 <element name="createDriverReviewRequest">
