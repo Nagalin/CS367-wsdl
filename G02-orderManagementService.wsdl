@@ -94,38 +94,64 @@
             transport="http://schemas.xmlsoap.org/soap/http"
         />
 
+        <!--
+            operation สำหรับการสร้าง order หลังจากผู้ใช้ทำการ confirm คำสั่งซื้อแล้ว
+            โดยมีการเช็ค confirm status ก่อนว่า order ถูก confirm โดยร้านค้าแล้วจึงจะสามารถสร้าง 
+            order ได้
+        -->
         <operation name="createOrder">
-            <soap:opration soapAction="http://delivery.com/createOrder" />
+            <soap:operation soapAction="http://delivery.com/createOrder" />
             <input> <soap:body use="literal" /> </input>
             <output> <soap:body use="literal" /> </output>
         </operation>
 
+        <!--
+            ทำการ update order กรณีที่หาคนขับให้ order นั้น ๆ ได้แล้ว
+            โดยนำ driverId ที่ได้มาเพิ่มข้อมูลลง order
+        -->
         <operation name="updateOrder">
-            <soap:opration soapAction="http://delivery.com/updateOrder" />
+            <soap:operation soapAction="http://delivery.com/updateOrder" />
             <input> <soap:body use="literal" /> </input>
             <output> <soap:body use="literal" /> </output>
         </operation>
 
+        <!--
+        ทำการ update status ของ order ในกรณีต่าง ๆ เช่นการยกเลิก order โดยรับ order status
+        ใหม่มาและทำการ update 
+        -->
         <operation name="updateOrderStatus">
-            <soap:opration soapAction="http://delivery.com/updateOrderStatus" />
+            <soap:operation soapAction="http://delivery.com/updateOrderStatus" />
             <input> <soap:body use="literal" /> </input>
             <output> <soap:body use="literal" /> </output>
         </operation>
 
+        <!--
+            ทำการยกเลิก order นั้น ๆ โดยมีการเช็คเงื่อนไขต่าง ๆ ว่าสามารถยกเลิก order 
+            นั้น ๆ ได้หรือไม่
+        -->
         <operation name="cancelOrder">
-            <soap:opration soapAction="http://delivery.com/cancelOrder" />
+            <soap:operation soapAction="http://delivery.com/cancelOrder" />
             <input> <soap:body use="literal" /> </input>
             <output> <soap:body use="literal" /> </output>
         </operation>
+
+        <!--
+           ดึงข้อมูล order ทั้งหมดของ user นั้น ๆ โดยใช้ userId ในการดึง
+        -->
 
         <operation name="getOrderInfo">
-            <soap:opration soapAction="http://delivery.com/getOrderInfo" />
+            <soap:operation soapAction="http://delivery.com/getOrderInfo" />
             <input> <soap:body use="literal" /> </input>
             <output> <soap:body use="literal" /> </output>
         </operation>
 
+        <!--
+            ดึงข้อมูลของ order นั้น ๆ โดยต้องมี order ID และ user ID 
+            ที่ตรงกันเพื่อเป็นการป้องกันการดึงข้อมูล order ของ user อื่น
+        -->
+
         <operation name="getOrderInfoWithId">
-            <soap:opration soapAction="http://delivery.com/getOrderInfoWithId" />
+            <soap:operation soapAction="http://delivery.com/getOrderInfoWithId" />
             <input> <soap:body use="literal" /> </input>
             <output> <soap:body use="literal" /> </output>
         </operation>
