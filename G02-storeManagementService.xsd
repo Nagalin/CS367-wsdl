@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
     <xs:simpleType name="ItemStatusType">
@@ -39,24 +40,6 @@
         </xs:complexType>
     </xs:element>
 
-
-    <xs:element name="ConfirmOrderRequest">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="cartId" type="xs:string"/>
-                <xs:element name="itemId" type="xs:string"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-
-    <xs:element name="ConfirmOrderRespond">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="ItemStatus" type="ItemStatusType"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-
     <xs:element name="UpdateItemStatusRequest">
         <xs:complexType>
             <xs:sequence>
@@ -68,7 +51,9 @@
 
     <xs:element name="UpdateItemStatusRespond">
         <xs:complexType>
-            <xs:element name="newItemStatus" type="ItemStatusType" />
+            <xs:sequence>
+                <xs:element name="newItemStatus" type="ItemStatusType" />
+            </xs:sequence>
         </xs:complexType>
     </xs:element>
 
@@ -80,7 +65,7 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="GetItemInfoRespond">
+    <xs:element name="GetOrderInfoRespond">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="itemInfo" type="ItemInfoType"/>
