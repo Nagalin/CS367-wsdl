@@ -1,5 +1,4 @@
-<types>
-    <schema targetNamespace="http://delivery.com/deliverymanagement.xsd"
+<schema targetNamespace="http://delivery.com/deliverymanagement.xsd"
             xmlns="http://www.w3.org/2000/10/XMLSchema">
         
         <element name="FindDriverRequest" type="FindDriverRequestType"/>
@@ -44,14 +43,17 @@
         </complexType>
 
         <element name="GetDriverInfo" type="driverInfoType"/>
-        <complexType name="driverInfoType" minOcccurs="0" nillable="true">
-            <element name="driverId" type="string"/>
-            <element name="driverName" type="string"/>
-            <element name="driverPhonenum" type="driverPhonenumType"/>
-            <element name="driverVehicle" type="driverVehicleType"/>
-            <element name="rating" type="float"/>
-            <element name="driverLocation" type="driverLocationType"/>
-            <element name="driverBankAccount" type="driverBankAccountType"/>
+        <complexType name="driverInfoType">
+            <sequence minOccurs="0">
+                <element name="driverId" type="string"/>
+                <element name="driverName" type="driverNameType"/>
+                <element name="driverPhonenum" type="driverPhonenumType"/>
+                <element name="driverVehicle" type="driverVehicleType"/>
+                <element name="rating" type="float"/>
+                <element name="driverLocation" type="driverLocationType"/>
+                <element name="driverAccountNo" type="driverAccountNoType"/>
+                <element name="driverBankName" type="string"/>
+            </sequence>
         </complexType>
 
 
@@ -68,7 +70,7 @@
             <element name="driverInfo" type="driverInfoType"/>
         </complexType>
 
-        <simpleType name="OrderStatusType">
+        <simpleType name="orderStatusType">
             <restriction base="string">
                 <enumeration value="Confirm" />
                 <enumeration value="Preparing" />
@@ -80,7 +82,15 @@
             </restriction>
         </simpleType>
 
-        <complexType name="userAddressType">------------------
+        <complexType name="userAddressType">
+            <sequence>
+                <element name="houseNo" type="string"/>
+                <element name="Street" type="string"/>
+                <element name="subDistrict" type="string"/>
+                <element name="district" type="string"/>
+                <element name="province" type="string"/>
+                <element name="postalCode" type="postalCodeType"/>
+            </sequence>
         </complexType>
 
         <complexType name="itemInfoType">
@@ -92,24 +102,34 @@
             <element name="totalPrice" type="float"/>
         </complexType>
 
+        <simpleType name="driverNameType">
+            <element name="fname" type="string"/>
+            <element name="lname" type="string"/>
+        </simpleType>
+
         <simpleType name="driverPhonenumType">
             <restriction base="integer">
-                <pattern value="\d{10}">
+                <pattern value="(08|09)\d{8}" />
             </restriction>
         </simpleType>
 
         <simpleType name="driverVehicleType">
             <restriction base="string">
-                <enumeration value="car"/>
-                <enumeration value="motorcycle"/>
+                <enumeration value="Car"/>
+                <enumeration value="Motorcycle"/>
             </restriction>
         </simpleType>
 
-        <complexType name="driverLocationType">------------------
-
+        <complexType name="driverLocationType">
+            <sequence>
+                <element name="latitude" type="decimal"/>
+                <element name="longitude" type="decimal"/>
+                <element name="timestamp" type="dateTime"/>
+                <element name="address" type="userAddressType" minOccurs="0"/>
+            </sequence>
         </complexType>
 
-        <simpleType name="driverBankAccountType">
+        <simpleType name="driverAccountNoType">
             <restriction base="integer">
                 <pattern value="\d{12}">
             </restriction>
@@ -117,23 +137,28 @@
 
         <simpleType name="driverStatusType">
              <restriction base="string">
-                <enumeration value="active"/>
-                <enumeration value="inactive"/>
-                <enumeration value="busy"/>
+                <enumeration value="Active"/>
+                <enumeration value="Inactive"/>
+                <enumeration value="Busy"/>
             </restriction>
         </simpleType>
 
         <simpleType name="tipAmountType">
-            <restriction base="decimal">
-             <minInclusive value="1.0"/>
+            <restriction base="float">
+                <minInclusive value="1.0"/>
             </restriction>
         </simpleType>
 
         <simpleType name="resultStatusType">
             <restriction base="string">
-                <enumeration value="valid"/>
-                <enumeration value="invalid"/>
+                <enumeration value="Valid"/>
+                <enumeration value="Invalid"/>
+            </restriction>
+        </simpleType>
+
+        <simpleType name="postalCodeType">
+            <restriction base="integer">
+                <pattern value="\d{5}">
             </restriction>
         </simpleType>
     </schema>
-</types>

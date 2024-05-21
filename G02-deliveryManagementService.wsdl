@@ -5,7 +5,9 @@
         xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
         xmlns="http://schemas.xmlsoap.org/wsdl/">
     
-
+    <type>
+    
+    </type>
 
     <message name="GetFindDriverInput">
         <part name="body" element="xsdl:FindDriverRequest"/>
