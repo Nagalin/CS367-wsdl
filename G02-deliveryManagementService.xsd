@@ -92,7 +92,7 @@
 
         <simpleType name="driverAccountNoType">
             <restriction base="integer">
-                <pattern value="\d{12}|\d{15}">
+                <pattern value="\d{10}">
             </restriction>
         </simpleType>
 
