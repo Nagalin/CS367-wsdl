@@ -1,20 +1,11 @@
-//@ts-nocheck
-/**
- * 
- * 
- * 
- * 
- * 
- * 
- */
-<definition name="OrderManagement"
+<definitions 
+    name="OrderManagement"
     targetNamespace="http://delivery.com/ordermanagement.wsdl"
     xmlns:tns="http://delivery.com/ordermanagement.wsdl"
     xmlns:xsdl="http://delivery.com/ordermanagement.wsdl"
     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-    xmlns:http="http://schemas.xmlsoap.org/soap/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
 >
-
 
     <message name="CreateOrderInput">
         <part name="body" element="xsdl:CreateOrderRequest" />
@@ -33,11 +24,11 @@
     </message>
 
     <message name="UpdateOrderStatusInput">
-        <part name="body" element="xsdl:UpdateOrderRequest" />
+        <part name="body" element="xsdl:UpdateOrderStatusRequest" />
     </message>
 
     <message name="UpdateOrderStatusOutput">
-        <part name="body" element="xsdl:UpdateOrderRespond" />
+        <part name="body" element="xsdl:UpdateOrderStatusRespond" />
     </message>
 
     <message name="CancelOrderInput">
@@ -56,15 +47,13 @@
         <part name="body" element="xsdl:GetOrderInfoRespond" />
     </message>
 
-    <message name="GetOrderInfoWithIdOutput">
+    <message name="GetOrderInfoWithIdInput">
         <part name="body" element="xsdl:GetOrderInfoWithIdRequest" />
     </message>
 
     <message name="GetOrderInfoWithIdOutput">
         <part name="body" element="xsdl:GetOrderInfoWithIdRespond" />
     </message>
-
-
 
     <portType name="OrderManagementPortType">
         <operation name="createOrder">
@@ -75,29 +64,24 @@
         <operation name="updateOrder">
             <input message="tns:UpdateOrderInput" />
             <output message="tns:UpdateOrderOutput" />
-
         </operation>
 
         <operation name="updateOrderStatus">
-
-            <input message="tns:UpdateOrderInput" />
-            <output message="tns:UpdateOrderOutput" />
+            <input message="tns:UpdateOrderStatusInput" />
+            <output message="tns:UpdateOrderStatusOutput" />
         </operation>
 
         <operation name="cancelOrder">
             <input message="tns:CancelOrderInput" />
             <output message="tns:CancelOrderOutput" />
-
         </operation>
 
         <operation name="getOrderInfo">
             <input message="tns:GetOrderInfoInput" />
             <output message="tns:GetOrderInfoOutput" />
-
         </operation>
 
         <operation name="getOrderInfoWithId">
-
             <input message="tns:GetOrderInfoWithIdInput" />
             <output message="tns:GetOrderInfoWithIdOutput" />
         </operation>
@@ -105,56 +89,55 @@
     </portType>
 
     <binding name="OrderManagementSoapBinding" type="tns:OrderManagementPortType">
-        <soap:binding style="document"
+        <soap:binding 
+            style="document"
             transport="http://schemas.xmlsoap.org/soap/http"
         />
 
         <operation name="createOrder">
-            <soap:opration soapAction="http://delivery.com/" />
-            <input><soap:body use="literal" /></input>
-            <output><soap:body use="literal" /></output>
-
+            <soap:opration soapAction="http://delivery.com/createOrder" />
+            <input> <soap:body use="literal" /> </input>
+            <output> <soap:body use="literal" /> </output>
         </operation>
 
         <operation name="updateOrder">
-            <soap:opration soapAction="http://delivery.com/" />
-            <input><soap:body use="literal" /></input>
-            <output><soap:body use="literal" /></output>
+            <soap:opration soapAction="http://delivery.com/updateOrder" />
+            <input> <soap:body use="literal" /> </input>
+            <output> <soap:body use="literal" /> </output>
         </operation>
 
         <operation name="updateOrderStatus">
-            <soap:opration soapAction="http://delivery.com/" />
-            <input><soap:body use="literal" /></input>
-            <output><soap:body use="literal" /></output>
+            <soap:opration soapAction="http://delivery.com/updateOrderStatus" />
+            <input> <soap:body use="literal" /> </input>
+            <output> <soap:body use="literal" /> </output>
         </operation>
 
         <operation name="cancelOrder">
-            <soap:opration soapAction="http://delivery.com/" />
-            <input><soap:body use="literal" /></input>
-            <output><soap:body use="literal" /></output>
+            <soap:opration soapAction="http://delivery.com/cancelOrder" />
+            <input> <soap:body use="literal" /> </input>
+            <output> <soap:body use="literal" /> </output>
         </operation>
 
         <operation name="getOrderInfo">
-            <soap:opration soapAction="http://delivery.com/" />
-            <input><soap:body use="literal" /></input>
-            <output><soap:body use="literal" /></output>
+            <soap:opration soapAction="http://delivery.com/getOrderInfo" />
+            <input> <soap:body use="literal" /> </input>
+            <output> <soap:body use="literal" /> </output>
         </operation>
 
         <operation name="getOrderInfoWithId">
-            <soap:opration soapAction="http://delivery.com/" />
-            <input><soap:body use="literal" /></input>
-            <output><soap:body use="literal" /></output>
+            <soap:opration soapAction="http://delivery.com/getOrderInfoWithId" />
+            <input> <soap:body use="literal" /> </input>
+            <output> <soap:body use="literal" /> </output>
         </operation>
 
     </binding>
 
     <service name="OrderManagementService">
-        <document>My first service</document>
+        <documentation>My first service</documentation>
         <port name="OrderManagementPort" binding="tns:OrderManagementSoapBinding">
             <soap:address location="http://delivery.com/OrderManagementService" />
         </port>
-
     </service>
 
-</definition>
+</definitions>
 
