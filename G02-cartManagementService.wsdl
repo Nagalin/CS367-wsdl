@@ -1,12 +1,12 @@
-<definitions name="AddToCart"
- targetNamespae = "http://delivery.com/AddToCart.wsdl"
-    xmlns : tns="http://delivery.com/AddToCart.wsdl"
-    xmlns : xsdl="http://delivery.com/AddToCart.xsd"
+<definitions name="CartManagement"
+ targetNamespae = "http://delivery.com/CartManagement.wsdl"
+    xmlns : tns="http://delivery.com/CartManagement.wsdl"
+    xmlns : xsdl="http://delivery.com/CartManagement.xsd"
     xmlns : soap="http://schemas.xmlsoap.org/wsdl/soap/"
     xmlns ="http://schemas.xmlsoap.org/wsdl/"/>
     
     <types>
-        <schema targetNamespae="http://delivery.com/AddToCart.xsd"
+        <schema targetNamespae="http://delivery.com/CartManagement.xsd"
          xmlns = "http://www.w3.org/2000/10/XMLSchema">
 
       <element name = "AddItemRequest">
@@ -54,7 +54,7 @@
     </message>
 
 
-    <portType name="AddToCartType">
+    <portType name="CartManagementType">
       <operation name="GetAddItem">
          <input message="tns:GetAddItemInput"/>
          <output mesage="tns:GetAddItem"/>
@@ -71,7 +71,7 @@
       </operation>
     </portType>
 
-    <binding name="AddToCartSoapBinding" Type="tns:AddToCartPortType">
+    <binding name="CartManagementSoapBinding" Type="tns:CartManagementPortType">
       <soap:binding style="document"
          transport="http://schemas.xmlsoap.org/soap/http"/>
       <operation name = "GetAddItem">
@@ -96,10 +96,10 @@
       </operation>
     </binding>
 
-    <service name="AddtoCartService">
+    <service name="CartManagementService">
       <documentation>Add To Cart</documenttation>
-      <port name="AddToCartPort" binding="tns:AddToCartSoapBinding">
-         <soap:address location="tns://delivery.com/addtocart"/>
+      <port name="CartManagementPort" binding="tns:CartManagementSoapBinding">
+         <soap:address location="tns://delivery.com/cartmanagement"/>
       </port>
     </service>
    </definitions>   
