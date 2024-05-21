@@ -1,0 +1,186 @@
+<definitions name="reviewManagement"
+    targetNamespace="http://delivery.com/reviewManagement.wsdl"
+    xmlns:tns="http://delivery.com/reviewManagement.wsdl"
+    xmlns:xsdl="http://delivery.com/reviewManagement.wsdl"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:http="http://schemas.xmlsoap.org/soap/"
+>
+
+<message name="createReviewInput">
+    <part name ="body" element="xsdl:createReviewRequest"/>
+</message>
+
+<message name="createReviewOutput">
+    <part name ="body" element="xsdl:createReviewResponse"/>
+</message>
+
+<message name="updateReviewInput">
+    <part name ="body" element="xsdl:updateReviewRequest"/>
+</message>
+
+<message name="updateReviewOutput">
+    <part name ="body" element="xsdl:updateReviewResponse"/>
+</message>
+
+<message name="deleteReviewInput">
+    <part name ="body" element="xsdl:deleteReviewRequest"/>
+</message>
+
+<message name="deleteReviewOutput">
+    <part name ="body" element="xsdl:deleteReviewResponse"/>
+</message>
+
+<message name="automaticReviewCheckingInput">
+    <part name ="body" element="xsdl:automaticReviewCheckingRequest"/>
+</message>
+
+<message name="automaticReviewCheckingOutput">
+    <part name ="body" element="xsdl:automaticReviewCheckingResponse"/>
+</message>
+
+<message name="createDriverReviewInput">
+    <part name ="body" element="xsdl:createDriverReviewRequest"/>
+</message>
+
+<message name="createDriverReviewOutput">
+    <part name ="body" element="xsdl:createDriverReviewResponse"/>
+</message>
+
+<message name="getStoreReviewInput">
+    <part name ="body" element="xsdl:getStoreReviewRequest"/>
+</message>
+
+<message name="getStoreReviewOutput">
+    <part name ="body" element="xsdl:getStoreReviewResponse"/>
+</message>
+
+<message name="getDriverReviewInput">
+    <part name ="body" element="xsdl:getDriverReviewRequest"/>
+</message>
+
+<message name="getDriverReviewOutput">
+    <part name ="body" element="xsdl:getDriverReviewResponse"/>
+</message>
+
+<portType name ="reviewManagementPortType">
+    <operation name="createReview">
+        <input message="tns:createReviewInput" />
+        <output message="tns:createReviewOutput" />
+    </operation>
+
+    <operation name="updateReview">
+        <input message="tns:updateReviewInput" />
+        <output message="tns:updateReviewOutput" />
+    </operation>
+
+    <operation name="deleteReview">
+        <input message="tns:deleteReviewInput" />
+        <output message="tns:deleteReviewOutput" />
+    </operation>
+
+    <operation name="automaticReviewChecking">
+        <input message="tns:automaticReviewCheckingInput" />
+        <output message="tns:automaticReviewCheckingOutput" />
+    </operation>
+
+    <operation name="createDriverReview">
+        <input message="tns:createDriverReviewInput" />
+        <output message="tns:createReviewOutput" />
+    </operation>
+
+    <operation name="getStoreReview">
+        <input message="tns:getStoreReviewInput" />
+        <output message="tns:getStoreReviewOutput" />
+    </operation>
+
+    <operation name="getDriverReview">
+        <input message="tns:getDriverReviewInput" />
+        <output message="tns:getDriverReviewOutput" />
+    </operation>
+</portType>
+
+<binding name="reviewManagementSoapBinding" type="tns:reviewManagementPortType">
+    <soap:binding 
+            style="document"
+            transport="http://schemas.xmlsoap.org/soap/http"
+    />
+    <operation name="createReview">
+            <soap:opration soapAction="http://delivery.com/createReview" />
+            <input> 
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+    </operation>
+
+    <operation name="updateReview">
+            <soap:opration soapAction="http://delivery.com/updateReview" />
+            <input> 
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+    </operation>
+
+    <operation name="deleteReview">
+            <soap:opration soapAction="http://delivery.com/deleteReview" />
+            <input> 
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+    </operation>
+
+    <operation name="automaticReviewChecking">
+            <soap:opration soapAction="http://delivery.com/automaticReviewChecking" />
+            <input> 
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+    </operation>
+
+    <operation name="createDriverReview">
+            <soap:opration soapAction="http://delivery.com/createDriverReview" />
+            <input> 
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+    </operation>
+
+    <operation name="getStoreReview">
+            <soap:opration soapAction="http://delivery.com/getStoreReview" />
+            <input> 
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+    </operation>
+
+    <operation name="getDriverReview">
+            <soap:opration soapAction="http://delivery.com/getDriverReview" />
+            <input> 
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+    </operation>
+
+</binding>
+
+<service name="reviewManagementService">
+    <documentation>Review Management Service</documentation>
+        <port name="reviewManagementPort" binding="tns:reviewManagementSoapBinding">
+            <soap:address location="http://delivery.com/reviewManagementService" />
+        </port>
+</service>
+
+</definitions>
