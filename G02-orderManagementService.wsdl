@@ -96,8 +96,8 @@
 
         <!--
             operation สำหรับการสร้าง order หลังจากผู้ใช้ทำการ confirm คำสั่งซื้อแล้ว
-            โดยมีการเช็ค confirm status ก่อนว่า order ถูก confirm โดยร้านค้าแล้วจึงจะสามารถสร้าง 
-            order ได้
+            โดยมีการเช็ค confirm status ก่อนว่า order ถูก confirm โดยร้านค้าแล้ว จึงจะสามารถ
+            สร้าง order ได้
         -->
         <operation name="createOrder">
             <soap:operation soapAction="http://delivery.com/createOrder" />
@@ -107,7 +107,9 @@
 
         <!--
             ทำการ update order กรณีที่หาคนขับให้ order นั้น ๆ ได้แล้ว
-            โดยนำ driverId ที่ได้มาเพิ่มข้อมูลลง order
+            โดยนำ orderId, userId มาค้นหา order นั้น ๆ ซึ่งการนำ userId มาค้นหาด้วย
+            เป็นการประกันว่า order จะไม่ถูก update โดย user อื่น และนำ 
+            driverId ที่ได้มาเพิ่มข้อมูลลง order นั้น ๆ
         -->
         <operation name="updateOrder">
             <soap:operation soapAction="http://delivery.com/updateOrder" />
@@ -116,8 +118,10 @@
         </operation>
 
         <!--
-        ทำการ update status ของ order ในกรณีต่าง ๆ เช่นการยกเลิก order โดยรับ order status
-        ใหม่มาและทำการ update 
+            ทำการ update status ของ order ในกรณีต่าง ๆ เช่นการยกเลิก order 
+            โดยรับ userId, orderId มาเพื่อค้นหา order นั้น ๆ ซึ่งการนำ userId 
+            มาค้นหาด้วยเป็นการประกันว่า order จะไม่ถูก update โดย user อื่น และนำ 
+            order status ใหม่ที่เป็น input มาทำการ update order status
         -->
         <operation name="updateOrderStatus">
             <soap:operation soapAction="http://delivery.com/updateOrderStatus" />
@@ -126,8 +130,10 @@
         </operation>
 
         <!--
-            ทำการยกเลิก order นั้น ๆ โดยมีการเช็คเงื่อนไขต่าง ๆ ว่าสามารถยกเลิก order 
-            นั้น ๆ ได้หรือไม่
+            ทำการยกเลิก order นั้น ๆ โดยนำ orderId, userId มาค้นหา order
+            ซึ่งการนำ userId มาค้นหาด้วยเป็นการประกันว่า order จะไม่ถูกยกเลิกโดย user อื่น
+            และมีการเช็คเงื่อนไขต่าง ๆ ว่าสามารถยกเลิก order 
+            นั้น ๆ ได้หรือไม่ หากยกเลิกได้ก็จะทำการเรียก payment service เพื่อทำการคืนเงิน
         -->
         <operation name="cancelOrder">
             <soap:operation soapAction="http://delivery.com/cancelOrder" />
@@ -147,7 +153,7 @@
 
         <!--
             ดึงข้อมูลของ order นั้น ๆ โดยต้องมี order ID และ user ID 
-            ที่ตรงกันเพื่อเป็นการป้องกันการดึงข้อมูล order ของ user อื่น
+            ที่ตรงกันเพื่อเป็นการป้องกันการดึงข้อมูล order ของ user อื่นที่ไม่ใช่เจ้าของ order นั้น ๆ
         -->
 
         <operation name="getOrderInfoWithId">
@@ -159,7 +165,7 @@
     </binding>
 
     <service name="OrderManagementService">
-        <documentation>My first service</documentation>
+        <documentation>Order management service for handling order</documentation>
         <port name="OrderManagementPort" binding="tns:OrderManagementSoapBinding">
             <soap:address location="http://delivery.com/OrderManagementService" />
         </port>

@@ -1,4 +1,3 @@
-//@ts-nocheck
 <schema xmlns="http://www.w3.org/2000/10/XMLSchema">
 
     <simpleType name="OrderStatusType">
@@ -13,11 +12,28 @@
         </restriction>
     </simpleType>
 
+     <simpleType name="PostalCodeType">
+        <restriction base="integer">
+            <pattern value="\d{5}">
+        </restriction>
+    </simpleType>
+
+    <complexType name="UserAddressType">
+        <sequence>
+            <element name="houseNo" type="string" />
+            <element name="Street" type="string" />
+            <element name="subDistrict" type="string" />
+            <element name="district" type="string" />
+            <element name="province" type="string" />
+            <element name="postalCode" type="PostalCodeType" />
+        </sequence>
+    </complexType>
+
     <complexType name="OrderInfoType">
         <element name="orderId" type="string" />
         <element name="orderStatus" type="OrderStatusType" />
         <element name="userId" type="string" />
-        <element name="userAddress" type="string" />
+        <element name="userAddress" type="UserAddressType" />
         <element name="createdAt" type="date" />
         <element name="updatedAt" type="date" />
     </complexType>
@@ -31,16 +47,7 @@
         <element name="totalPrice" type="float" />
     </complexType>
 
-    <complexType name="UserAddressType">
-        <sequence>
-            <element name="houseNo" type="string" />
-            <element name="Street" type="string" />
-            <element name="subDistrict" type="string" />
-            <element name="district" type="string" />
-            <element name="province" type="string" />
-            <element name="postalCode" type="postalCodeType" />
-        </sequence>
-    </complexType>
+    
 
     <complexType name="DriverInfoType">
         <element name="driverInfo" minOccurs="0" nillable="true" >
