@@ -1,0 +1,105 @@
+<definitions name="AddToCart"
+ targetNamespae = "http://delivery.com/AddToCart.wsdl"
+    xmlns : tns="http://delivery.com/AddToCart.wsdl"
+    xmlns : xsdl="http://delivery.com/AddToCart.xsd"
+    xmlns : soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns ="http://schemas.xmlsoap.org/wsdl/"/>
+    
+    <types>
+        <schema targetNamespae="http://delivery.com/AddToCart.xsd"
+         xmlns = "http://www.w3.org/2000/10/XMLSchema">
+
+      <element name = "AddItemRequest">
+      </element>
+
+      <element name = "AddItem">
+      </element>
+
+      <element name = "GetCartInfoRequest">
+      </element>
+
+      <element name = "GetCartInfo">
+      </element>
+
+      <element name = "DeleteCartRequest">
+      </element>
+
+      <element name = "DeleteCart">
+      </element>
+       </schema>
+    </types>
+
+    <message name = "GetAddItemInput">
+      <part name="body" element="xsdl:AddItemRequest"/>
+    </message>
+
+    <message name = "GetAddItemOutput">
+      <part name="body" element="xsdl:AddItem"/>
+    </message>
+
+    <message name = "GetCartInfoInput">
+      <part name="body" element="xsdl:GetCartInfoRequest"/>
+    </message>
+
+    <message name = "GetCartInfoOutput">
+      <part name="body" element="xsdl:GetCartInfo"/>
+    </message>
+
+    <message name = "GetDeleteCartInput">
+      <part name="body" element="xsdl:DeleteCartRequest"/>
+    </message>
+
+     <message name = "GetDeleteCartOutput">
+      <part name="body" element="xsdl:DeleteCart"/>
+    </message>
+
+
+    <portType name="AddToCartType">
+      <operation name="GetAddItem">
+         <input message="tns:GetAddItemInput"/>
+         <output mesage="tns:GetAddItem"/>
+      </operation>
+
+      <operation name="GetCartInfo">
+         <input message="tns:GetCartInfoInput"/>
+         <output mesage="tns:GetCartInfo"/>
+      </operation>
+
+      <operation name="DeleteCart">
+         <input message="tns:GetDeleteCartInput"/>
+         <output mesage="tns:GetDeleteCart"/>
+      </operation>
+    </portType>
+
+    <binding name="AddToCartSoapBinding" Type="tns:AddToCartPortType">
+      <soap:binding style="document"
+         transport="http://schemas.xmlsoap.org/soap/http"/>
+      <operation name = "GetAddItem">
+        <soap:operation
+               soapAction="http://delivery.com/GetAddItem"/>
+               <input> <soap:body use="literal"/></input>
+               <output> <soap:body use="literal"/></output>
+      </operation>
+
+      <operation name = "GetCartInfo">
+        <soap:operation
+               soapAction="http://delivery.com/GetCartInfo"/>
+               <input> <soap:body use="literal"/></input>
+               <output> <soap:body use="literal"/></output>
+      </operation>
+
+      <operation name = "GetDeleteCart">
+        <soap:operation
+               soapAction="http://delivery.com/GetDeleteCart"/>
+               <input> <soap:body use="literal"/></input>
+               <output> <soap:body use="literal"/></output>
+      </operation>
+    </binding>
+
+    <service name="AddtoCartService">
+      <documentation>Add To Cart</documenttation>
+      <port name="AddToCartPort" binding="tns:AddToCartSoapBinding">
+         <soap:address location="tns://delivery.com/addtocart"/>
+      </port>
+    </service>
+   </definitions>   

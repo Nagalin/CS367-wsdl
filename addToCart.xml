@@ -1,0 +1,54 @@
+<schema targetNamespae="http://delivery.com/addtocart.xsd"
+    xmlns="http://www.w3.org/2000/10/XMLSchema">
+
+        <complexType  name = "AddItemRequest">
+            <element name="itemId" type="string"/>
+            <element name="cartId" type="string"/>
+            <element name="itemQuantity" type="integer"/>
+        </complexType>
+            
+        <complexType  name = "AddItem">
+            <complexType name="itemInfo">
+                <element name="itemId" type="string"/>
+                <element name="itemName" type="string"/>
+                <element name="itemPrice" type="float"/>
+                <element name="itemPic" type="string"/>
+                <element name="itemQuantity" type="integer"/>
+            </complexType>
+        </complexType>
+
+        <complexType  name = "GetCartInfoRequest">
+            <element name="cartId" type="string"/>
+            <element name="userId" type="string"/>
+        </complexType>
+        
+        <complexType  name = "GetCartInfo">
+            <element name="cartId" type="string"/>
+            <element name="userId" type="string"/>
+            <element name="cartStatus" type="string"/>
+            <element name="cartId" type="string"/>
+            
+            <complexType name="itemsInfo" minOccur="1">
+                <sequence minOccur="1">
+                <complexType name="itemInfo">
+                    <element name="itemId" type="string"/>
+                    <element name="itemName" type="string"/>
+                    <element name="totalPrice" type="float"/>
+                    <element name="itemPic" type="string"/>
+                    <element name="itemQuantity" type="integer"/>
+                </complexType>
+                </sequence>
+            </complexType>
+        </complexType>
+
+        <complexType  name = "GetDeleteCartRequest">
+            <element name="cartId" type="string"/>
+            <element name="userId" type="string"/>
+        </complexType>
+
+        <complexType  name = "GetCartInfo">
+            <element name="cartStatus" type="string"/>
+        </complexType>
+
+</schema>
+             
