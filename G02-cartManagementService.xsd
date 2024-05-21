@@ -29,7 +29,7 @@
             <element name="cartId" type="string"/>
             
             <complexType name="itemsInfo" minOccur="1">
-                <sequence minOccur="1">
+                <sequence>
                 <complexType name="itemInfo">
                     <element name="itemId" type="string"/>
                     <element name="itemName" type="string"/>
