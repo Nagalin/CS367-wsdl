@@ -156,7 +156,7 @@
                         <element name="storeRating" type="inputRatingType"/>
                         <element name="createdAt" type="dateTime"/>
                         <element name="updatedAt" type="dateTime"/> 
-                        {/* dateTime is a built-in data type */}
+                         <!-- dateTime is a built-in data type  -->
                     </sequence>
                 </complexType>
             </element>
