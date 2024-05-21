@@ -1,3 +1,4 @@
+//@ts-nocheck
 <schema xmlns="http://www.w3.org/2000/10/XMLSchema">
 
     <simpleType name="OrderStatusType">
@@ -12,9 +13,9 @@
         </restriction>
     </simpleType>
 
-     <simpleType name="PostalCodeType">
+    <simpleType name="PostalCodeType">
         <restriction base="integer">
-            <pattern value="\d{5}">
+            <pattern value="\d{5}" />
         </restriction>
     </simpleType>
 
@@ -47,40 +48,39 @@
         <element name="totalPrice" type="float" />
     </complexType>
 
-    
-
     <complexType name="DriverInfoType">
-        <element name="driverInfo" minOccurs="0" nillable="true" >
-            <complexType >
-                <element name="driverId" type="string" />
-                <complexType name="driverName">
-                    <element name="fname" type="string" />
-                    <element name="lname" type="string" />
-                </complexType>
+        <element name="driverId" type="string" />
 
-                <element name="driverPhonenum" >
-                    <restriction base="integer">
-                        <pattern value="(08|09)\d{8}" />
-                    </restriction>
-                </element>
+        <complexType name="driverName">
+            <element name="fname" type="string" />
+            <element name="lname" type="string" />
+        </complexType>
 
-                <element name="driverVehicle" type="string" />
-                <element name="rating" type="float" />
-                <element name="driverLocation" >
-                    <complexType>
-                        <element name="latitude" type="decimal" />
-                        <element name="longitude" type="decimal" />
-                        <element name="timestamp" type="dateTime" />
-                        <element name="address" type="UserAddressType" minOccurs="0" />
-                    </complexType>
-                </element>
-                <element name="driverBankName" type="string" />
-                <element name="driverAccountNo">
-                    <restriction base="integer">
-                        <pattern value="\d{10}" />
-                    </restriction>
-                </element>
+        <element name="driverPhonenum" >
+            <simpleType>
+                <restriction base="integer">
+                    <pattern value="(08|09)\d{8}" />
+                </restriction>
+            </simpleType>
+        </element>
+
+        <element name="driverVehicle" type="string" />
+        <element name="rating" type="float" />
+        <element name="driverLocation" >
+            <complexType>
+                <element name="latitude" type="decimal" />
+                <element name="longitude" type="decimal" />
+                <element name="timestamp" type="dateTime" />
+                <element name="address" type="UserAddressType" />
             </complexType>
+        </element>
+        <element name="driverBankName" type="string" />
+        <element name="driverAccountNo">
+            <simpleType>
+                <restriction base="integer">
+                    <pattern value="\d{10}" />
+                </restriction>
+            </simpleType>
         </element>
     </complexType>
 
@@ -115,7 +115,12 @@
                 </sequence>
             </complexType>
         </element>
-        <element name="driverInfo" type="DriverInfoType" />
+        <element 
+            name="driverInfo" 
+            type="DriverInfoType" 
+            minOccurs="0" 
+            nillable="true" 
+        />
     </element>
 
     <element name="UpdateOrderRequest">
@@ -188,8 +193,13 @@
                     </sequence>
                 </complexType>
             </element>
-            
-            <element name="driverInfo" type="DriverInfoType" />
+
+            <element 
+                name="driverInfo" 
+                type="DriverInfoType" 
+                minOccurs="0" 
+                nillable="true"
+            />
         </complexType>
     </element>
 
@@ -225,7 +235,12 @@
                     </sequence>
                 </complexType>
             </element>
-            <element name="driverInfo" type="DriverInfoType" />
+            <element 
+                name="driverInfo" 
+                type="DriverInfoType" 
+                minOccurs="0" 
+                nillable="true" 
+            />
         </complexType>
     </element>
 
