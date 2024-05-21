@@ -6,7 +6,7 @@
         xmlns="http://schemas.xmlsoap.org/wsdl/">
     
     <type>
-    
+
     </type>
 
     <message name="GetFindDriverInput">
@@ -43,22 +43,22 @@
 
 
     <portType name="DeliveryManagementPortType">
-        <operation name="GetFindDriver">
+        <operation name="GetFindDriver"> //เป็นการค้นหาคนขับเพื่อรับ order โดยใช้ storeId กับ orderInfo
             <input message="tns:GetFindDriverInput"/>
             <output message="tns:GetFindDriverOutput"/>
         </operation>
         
-        <operation name="GetDriverStatus">
+        <operation name="GetDriverStatus"> //ตรวจสอบสถานะของคนขับดูว่าพร้อมรับ order หรือไม่ โดยใช้ orderId และ driverId
             <input message="tns:GetDriverStatusInput"/>
             <output message="tns:GetDriverStatusOutput"/>
         </operation>
 
-        <operation name="GetTip">
+        <operation name="GetTip"> //ตรวจสอบข้อมูลของคนขับให้ตรงกับคนขับที่กดรับ order ก่อนการให้ทิป โดยใช้ข้อมูลจาก orderId, driverId, และ tipAmount
             <input message="tns:GetTipInput"/>
             <output message="tns:GetTipOutput"/>
         </operation>
 
-        <operation name="GetDriverInfo">
+        <operation name="GetDriverInfo"> //ดูข้อมูลของคนขับโดยเรียกจาก driverId
             <input message="tns:GetDriverInfoInput"/>
             <output message="tns:GetDriverInfoOutput"/>
         </operation>

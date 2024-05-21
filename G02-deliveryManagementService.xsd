@@ -1,75 +1,6 @@
 <schema targetNamespace="http://delivery.com/deliverymanagement.xsd"
             xmlns="http://www.w3.org/2000/10/XMLSchema">
         
-        <element name="FindDriverRequest" type="FindDriverRequestType"/>
-        <complexType name="FindDriverRequestType">
-            <element name="storeId" type="string"/>
-            <element name="orderInfo" type="orderInfoType"/>
-        </complexType>
-
-        <element name="FindDriver" type="FindDriverType"/>
-        <complexType name="FindDriverType">
-            <element name="driverId" type="string"/>
-            <element name="driverStatus" type="driverStatusType"/>
-            <element name="driversInfo" type="driverInfoType"/>
-        </complexType> 
-
-        <element name="GetDriverStatusRequest" type="GetDriverStatusRequestType"/>
-        <complexType name="GetDriverStatusRequestType">
-            <element name="orderId" type="string"/>
-            <element name="driverId" type="string"/>
-        </complexType>
-
-        <element name="GetDriverStatus" type="GetDriverStatusType"/>
-        <complexType name="GetDriverStatusType">
-            <element name="driverStatus" type="driverStatusType"/>
-        </complexType>
-
-        <element name="TipRequest" type="TipRequestType"/>
-        <complexType name="TipRequestType">
-            <element name="orderId" type="string"/>
-            <element name="driverId" type="string"/>
-            <element name="tipAmount" type="tipAmountType"/>
-        </complexType>
-
-        <element name="Tip" type="TipType"/>
-        <complexType name="TipType">
-            <element name="resultStatus" type="resultStatusType"/>
-        </complexType>
-
-        <element name="GetDriverInfoRequest" type="GetDriverInfoRequestType"/>
-        <complexType name="GetDriverInfoRequestType">
-            <element name="driverId" type="string"/>
-        </complexType>
-
-        <element name="GetDriverInfo" type="driverInfoType"/>
-        <complexType name="driverInfoType">
-            <sequence minOccurs="0">
-                <element name="driverId" type="string"/>
-                <element name="driverName" type="driverNameType"/>
-                <element name="driverPhonenum" type="driverPhonenumType"/>
-                <element name="driverVehicle" type="driverVehicleType"/>
-                <element name="rating" type="float"/>
-                <element name="driverLocation" type="driverLocationType"/>
-                <element name="driverAccountNo" type="driverAccountNoType"/>
-                <element name="driverBankName" type="string"/>
-            </sequence>
-        </complexType>
-
-
-
-
-        <complexType name="orderInfoType">
-            <element name="orderId" type="string"/>
-            <element name="orderStatus" type="orderStatusType"/>
-            <element name="userId" type="string"/>
-            <element name="userAddress" type="userAddressType"/>
-            <element name="createAt" type="date"/>
-            <element name="updateAt" type="date"/>
-            <element name="itemsInfo" type="itemInfoType"/>
-            <element name="driverInfo" type="driverInfoType"/>
-        </complexType>
-
         <simpleType name="orderStatusType">
             <restriction base="string">
                 <enumeration value="Confirm" />
@@ -79,6 +10,12 @@
                 <enumeration value="Delivered" />
                 <enumeration value="Completed" />
                 <enumeration value="Canceled" />
+            </restriction>
+        </simpleType>
+
+        <simpleType name="postalCodeType">
+            <restriction base="integer">
+                <pattern value="\d{5}">
             </restriction>
         </simpleType>
 
@@ -100,6 +37,30 @@
             <element name="itemQuantity" type="integer"/>
             <element name="itemPrice" type="float"/>
             <element name="totalPrice" type="float"/>
+        </complexType>
+
+        <complexType name="driverInfoType">
+            <sequence minOccurs="0">
+                <element name="driverId" type="string"/>
+                <element name="driverName" type="driverNameType"/>
+                <element name="driverPhonenum" type="driverPhonenumType"/>
+                <element name="driverVehicle" type="driverVehicleType"/>
+                <element name="rating" type="float"/>
+                <element name="driverLocation" type="driverLocationType"/>
+                <element name="driverAccountNo" type="driverAccountNoType"/>
+                <element name="driverBankName" type="string"/>
+            </sequence>
+        </complexType>
+
+        <complexType name="orderInfoType">
+            <element name="orderId" type="string"/>
+            <element name="orderStatus" type="orderStatusType"/>
+            <element name="userId" type="string"/>
+            <element name="userAddress" type="userAddressType"/>
+            <element name="createAt" type="date"/>
+            <element name="updateAt" type="date"/>
+            <element name="itemsInfo" type="itemInfoType"/>
+            <element name="driverInfo" type="driverInfoType"/>
         </complexType>
 
         <simpleType name="driverNameType">
@@ -131,7 +92,7 @@
 
         <simpleType name="driverAccountNoType">
             <restriction base="integer">
-                <pattern value="\d{12}">
+                <pattern value="\d{10}">
             </restriction>
         </simpleType>
 
@@ -156,9 +117,48 @@
             </restriction>
         </simpleType>
 
-        <simpleType name="postalCodeType">
-            <restriction base="integer">
-                <pattern value="\d{5}">
-            </restriction>
-        </simpleType>
+
+
+        <complexType name="FindDriverRequestType">
+            <element name="storeId" type="string"/>
+            <element name="orderInfo" type="orderInfoType"/>
+        </complexType>
+        <element name="FindDriverRequest" type="FindDriverRequestType"/>
+
+        <complexType name="FindDriverType">
+            <element name="driverId" type="string"/>
+            <element name="driverStatus" type="driverStatusType"/>
+            <element name="driversInfo" type="driverInfoType"/>
+        </complexType> 
+        <element name="FindDriver" type="FindDriverType"/>
+
+        <complexType name="GetDriverStatusRequestType">
+            <element name="orderId" type="string"/>
+            <element name="driverId" type="string"/>
+        </complexType>
+        <element name="GetDriverStatusRequest" type="GetDriverStatusRequestType"/>
+
+        <complexType name="GetDriverStatusType">
+            <element name="driverStatus" type="driverStatusType"/>
+        </complexType>
+        <element name="GetDriverStatus" type="GetDriverStatusType"/>
+
+        <complexType name="TipRequestType">
+            <element name="orderId" type="string"/>
+            <element name="driverId" type="string"/>
+            <element name="tipAmount" type="tipAmountType"/>
+        </complexType>
+        <element name="TipRequest" type="TipRequestType"/>
+
+        <complexType name="TipType">
+            <element name="resultStatus" type="resultStatusType"/>
+        </complexType>
+        <element name="Tip" type="TipType"/>
+
+        <complexType name="GetDriverInfoRequestType">
+            <element name="driverId" type="string"/>
+        </complexType>
+        <element name="GetDriverInfoRequest" type="GetDriverInfoRequestType"/>
+
+        <element name="GetDriverInfo" type="driverInfoType"/>
     </schema>
