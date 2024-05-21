@@ -6,13 +6,13 @@
  * 
  */
 <schema xmlns="http://www.w3.org/2000/10/XMLSchema">
-    <complexType name="createOrderRequest">
+    <complexType name="CreateOrderRequest">
         <element name="userId" type="string" />
         <element name="cartId" type="string" />
         <element name="confirmStatus" type="string" />
     </complexType>
 
-    <complexType name="createOrderRespond">
+    <complexType name="CreateOrderRespond">
 
         <complexType name="orderInfo">
             <element name="orderId" type="string" />
@@ -58,48 +58,48 @@
 
     </complexType>
 
-    <complexType name="updateOrderRequest">
+    <complexType name="UpdateOrderRequest">
         <element name="orderId" type="string" />
         <element name="userId" type="string" />
         <element name="driverId" type="string" />
     </complexType>
 
-    <simpleType name="updateOrderRespond" type="string">
+    <simpleType name="UpdateOrderRespond" type="string">
         <restriction base="string">
             <enumeration value="success" />
             <enumeration value="fail" />
         </restriction>
     </simpleType>
 
-    <complexType name="updateOrderStatusRequest">
+    <complexType name="UpdateOrderStatusRequest">
         <element name="orderId" type="string" />
         <element name="userId" type="string" />
         <element name="newOrderStatus" type="string" />
 
     </complexType>
 
-    <complexType name="updateOrderStatusRespond">
-        <element name="orderStatus" type="string" />
+    <complexType name="UpdateOrderStatusRespond">
+        <element name="OrderStatus" type="string" />
     </complexType>
 
-    <complexType name="cancelOrderRequest">
+    <complexType name="CancelOrderRequest">
         <element name="orderId" type="string" />
         <element name="reasons" type="string" />
 
     </complexType>
 
-    <complexType name="cancelOrderRespond">
+    <complexType name="CancelOrderRespond">
         <element name="orderStatus" type="string" />
         <element name="orderId" type="string" />
 
     </complexType>
 
-    <complexType name="getOrderInfoRequest">
+    <complexType name="GetOrderInfoRequest">
         <element name="userId" />
 
     </complexType>
 
-    <complexType name="getOrderInfoRespond">
+    <complexType name="GetOrderInfoRespond">
         <complexType name="ordersInfo" type="string" >
             <sequence>
                 <complexType name="orderInfo">
@@ -116,12 +116,12 @@
 
     </complexType>
 
-    <complexType name="getOrderInfoWithIdRequest">
+    <complexType name="GetOrderInfoWithIdRequest">
         <element name="userId" />
         <element name="orderId" />
     </complexType>
 
-    <complexType name="getOrderInfoWithIdRespond">
+    <complexType name="GetOrderInfoWithIdRespond">
         <element name="userId" />
         <element name="orderId" />
 
