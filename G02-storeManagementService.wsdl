@@ -27,7 +27,7 @@
         <part name="body" element="xsdl:UpdateItemStatusRequest" />
     </message>
 
-    <message name="UpdateItemStatusInput">
+    <message name="UpdateItemStatusOutput">
         <part name="body" element="xsdl:UpdateItemStatusRespond" />
     </message>
 
