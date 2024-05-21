@@ -67,7 +67,7 @@
 
 
     <portType name="OrderManagementPortType">
-        <operation name="CreateOrder">
+        <operation name="createOrder">
             <input message="tns:CreateOrderInput" />
             <output message="tns:CreateOrderOutput" />
         </operation>
@@ -103,6 +103,50 @@
         </operation>
 
     </portType>
+
+    <binding name="OrderManagementSoapBinding" type="tns:OrderManagementPortType">
+        <soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http"
+        />
+
+        <operation name="createOrder">
+            <soap:opration soapAction="http://delivery.com/" />
+            <input><soap:body use="literal" /></input>
+            <output><soap:body use="literal" /></output>
+
+        </operation>
+
+        <operation name="updateOrder">
+            <soap:opration soapAction="http://delivery.com/" />
+            <input><soap:body use="literal" /></input>
+            <output><soap:body use="literal" /></output>
+        </operation>
+
+        <operation name="updateOrderStatus">
+            <soap:opration soapAction="http://delivery.com/" />
+            <input><soap:body use="literal" /></input>
+            <output><soap:body use="literal" /></output>
+        </operation>
+
+        <operation name="cancelOrder">
+            <soap:opration soapAction="http://delivery.com/" />
+            <input><soap:body use="literal" /></input>
+            <output><soap:body use="literal" /></output>
+        </operation>
+
+        <operation name="getOrderInfo">
+            <soap:opration soapAction="http://delivery.com/" />
+            <input><soap:body use="literal" /></input>
+            <output><soap:body use="literal" /></output>
+        </operation>
+
+        <operation name="getOrderInfoWithId">
+            <soap:opration soapAction="http://delivery.com/" />
+            <input><soap:body use="literal" /></input>
+            <output><soap:body use="literal" /></output>
+        </operation>
+
+    </binding>
 
     <service name="OrderManagementService">
         <document>My first service</document>
