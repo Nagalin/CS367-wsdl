@@ -1,0 +1,105 @@
+<definitions 
+    name="StoreManagement"
+    targetNamespace="http://delivery.com/storemanagement.wsdl"
+    xmlns:tns="http://delivery.com/storemanagement.wsdl"
+    xmlns:xsdl="http://delivery.com/storemanagement.wsdl"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+>
+
+    <message name="GetItemStatusInput">
+        <part name="body" element="xsdl:GetItemStatusRequest" />
+    </message>
+
+    <message name="GetItemStatusOutput">
+        <part name="body" element="xsdl:GetItemStatusRespond" />
+    </message>
+
+    <message name="ConfirmOrderInput">
+        <part name="body" element="xsdl:ConfirmOrderRequest" />
+    </message>
+
+    <message name="ConfirmOrderOutput">
+        <part name="body" element="xsdl:ConfirmOrderRespond" />
+    </message>
+
+    <message name="UpdateItemStatusInput">
+        <part name="body" element="xsdl:UpdateItemStatusRequest" />
+    </message>
+
+    <message name="UpdateItemStatusInput">
+        <part name="body" element="xsdl:UpdateItemStatusRespond" />
+    </message>
+
+    <message name="GetItemInfoInput">
+        <part name="body" element="xsdl:GetItemInfoGetItemInfoRequest" />
+    </message>
+
+    <message name="GetItemInfoOutput">
+        <part name="body" element="xsdl:GetItemInfoRequest" />
+    </message>
+
+    <portType name="StoreManagementPortType">
+        <operation name="getItemStatus">
+            <input message="tns:GetItemStatusInput" />
+            <output message="tns:GetItemStatusOutput" />
+        </operation>
+
+        <operation name="confirmOrder">
+            <input message="tns:ConfirmOrderInput" />
+            <output message="tns:ConfirmOrderOutput" />
+        </operation>
+
+        <operation name="updateItemStatus">
+            <input message="tns:UpdateItemStatusInput" />
+            <output message="tns:UpdateItemStatusOutput" />
+        </operation>
+
+        <operation name="getItemInfo">
+            <input message="tns:GetItemInfoInput" />
+            <output message="tns:GetItemInfoOutput" />
+        </operation>
+
+    </portType>
+
+    <binding name="StoreManagementSoapBinding" type="tns:StoreManagementPortType">
+        <soap:binding 
+            style="document"
+            transport="http://schemas.xmlsoap.org/soap/http"
+        />
+
+        <operation name="getItemStatus">
+            <soap:opration soapAction="http://delivery.com/getItemStatus" />
+            <input> <soap:body use="literal" /> </input>
+            <output> <soap:body use="literal" /> </output>
+        </operation>
+
+        <operation name="confirmOrder">
+            <soap:opration soapAction="http://delivery.com/confirmOrder" />
+            <input> <soap:body use="literal" /> </input>
+            <output> <soap:body use="literal" /> </output>
+        </operation>
+
+        <operation name="updateItemStatus">
+            <soap:opration soapAction="http://delivery.com/updateItemStatus" />
+            <input> <soap:body use="literal" /> </input>
+            <output> <soap:body use="literal" /> </output>
+        </operation>
+
+        <operation name="getItemInfo">
+            <soap:opration soapAction="http://delivery.com/getItemInfo" />
+            <input> <soap:body use="literal" /> </input>
+            <output> <soap:body use="literal" /> </output>
+        </operation>
+
+    </binding>
+
+    <service name="StoreManagementService">
+        <documentation>This is Store Mngmt</documentation>
+        <port name="StoreManagementPort" binding="tns:StoreManagementSoapBinding">
+            <soap:address location="http://delivery.com/StoreManagementService" />
+        </port>
+    </service>
+
+</definitions>
+
