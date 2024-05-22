@@ -1,3 +1,16 @@
+<!-- คำอธิบาย Operations ต่างๆใน Store Management Service
+    1. getItemStatus = สำหรับตรวจดูว่าสินค้านั้นๆร้านค้ายังทำได้หรือไม่
+                        รับ itemId มาค้นหาในร้านแล้วส่งค่า itemStatus กลับไป
+    2.confirmOrder = ใช้สำหรับยืนยันรายการสินค้าที่สั่งในร้านนั้นๆ 
+                     รับ cartId และ itemId ในการตรวจสอบ หากยืนยันและถูกต้องจะส่ง ConfirmResult
+                     ไปยังร้านค้าเพื่อเริ่มการจัดส่งหรือทำอาหาร
+    3.updateItemStaTus = ไว้ใช้ในกรณีที่กระบวนการทำอาหารเปลี่ยนสถานะแล้วจึงอัพเดทในระบบ
+                          รับ itemId และ itemStatusใหม่ เพื่ออัพเดท จากนั้นส่ง ItemStatus ใหม่ออกไป
+    4.getItemInfo = ใช้สำหรับการเรียกข้อมูลไอเท็มในร้านค้า หรือการดูรายละเอียดสินค้า
+                    รับ itemId จากนั้น return ข้อมูลสินค้าอย่างเช่น itemId, itemName, itemPic, itemPrice
+                    กับไป
+        -->
+
 <definitions 
     name="StoreManagement"
     targetNamespace="http://delivery.com/storemanagement.wsdl"

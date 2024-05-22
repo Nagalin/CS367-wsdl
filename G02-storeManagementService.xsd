@@ -8,6 +8,18 @@
         </xs:restriction>
     </xs:simpleType>
 
+     <xs:simpleType name="CartIdType">
+        <restriction base="string">
+        <pattern value="[C]{1}\d{9}"/>
+    </restriction>
+    </xs:simpleType>
+
+    <simpleType name="ItemIdType">
+    <xs:restriction base="string">
+        <pattern value="[I]{1}\d{9}"/>
+    </xs:restriction>
+</simpleType>
+
     <xs:simpleType name="ConfirmStatusType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Confirmed"/>
@@ -17,7 +29,7 @@
 
     <xs:complexType name="ItemInfoType">
         <xs:sequence>
-            <xs:element name="itemId" type="xs:string" />
+            <xs:element name="itemId" type="itemIdType" />
             <xs:element name="itemName" type="xs:string" />
             <xs:element name="itemPic" type="xs:string" />
             <xs:element name="itemPrice" type="xs:float" />
@@ -27,10 +39,12 @@
     <xs:element name="GetItemStatusRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="itemId" type="xs:string"/>
+                <xs:element name="itemId" type="ItemIdType"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+   
 
     <xs:element name="GetItemStatusRespond">
         <xs:complexType>
@@ -40,10 +54,28 @@
         </xs:complexType>
     </xs:element>
 
+     
+    <xs:element name="ConfirmOrderRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="itemId" type="ItemIdType"/>
+                <xs:element name="cartId" type="CartIdType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+     <xs:element name="ConfirmOrderRespond">
+        <xs:complexType>
+                <xs:element name="confirmResult" type="ConfirmStatusType"/>
+        </xs:complexType>
+    </xs:element>
+
+
+
     <xs:element name="UpdateItemStatusRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="itemId" type="xs:string" />
+                <xs:element name="itemId" type="ItemIdType" />
                 <xs:element name="itemStatus" type="ItemStatusType" />
             </xs:sequence>
         </xs:complexType>
@@ -60,7 +92,7 @@
     <xs:element name="GetItemInfoRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="itemId" type="xs:string"/>
+                <xs:element name="itemId" type="ItemIdType"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
